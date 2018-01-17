@@ -1,0 +1,59 @@
+class TodosController < ApplicationController
+	before_action :find_todo, only: [:show, :edit, :update, :destroy, :complete]
+
+	def index
+		@todos = Todo.all
+	end
+
+	def new
+		@todo = Todo.new
+	end
+
+	def create
+		@todo = Todo.new(todo_params)
+		@todo.save
+		redirect_to todos_path
+	end
+
+	def show
+	end
+
+	def edit
+	end
+
+	def update
+		@todo.update(todo_params)
+		redirect_to todos_path
+	end
+
+	def destroy
+		@todo.destroy
+		redirect_to todos_path		
+	end
+	
+	def complete
+		@todo.completed = true
+   		@todo.save
+   		redirect_to todos_path
+	end
+	
+	def list
+		@todos = Todo.all
+	end
+	
+	private
+	def todo_params
+		params.require(:todo).permit(:description, :completed)
+	end
+	
+	def find_todo
+		@todo = Todo.find(params[:id])
+	end
+end
+
+
+
+#En el controller todos crear el método index. En este método se debe declarar una 
+#variable de instancia @todos que almacenará la colección de ToDos existentes.
+#En el controller todos crear el método show. Este método debe buscar un ToDo en base 
+#al parámetro 'id'. (Todo.find) y asignarlo a a la variable @todo

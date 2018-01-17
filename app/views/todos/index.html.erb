@@ -1,0 +1,24 @@
+<h1>Formulario</h1>
+<br>
+<p> <%= link_to "Crear", todos_new_path %> </p>
+<% @todos.each do |todos| %>
+	<div class="well">
+		<h3> <%= todos.description %></h3>
+		<p> <%= todos.completed %></p>
+		<p>completed:
+			<%
+              if todos.completed
+                flag = "checked"
+              else
+                flag = ""
+              end
+            %>
+            <input type="checkbox" aria-label="" <%= flag %>  >
+		</p>
+
+		<p> <%= link_to "Ver", todos %></p>
+		<p><%= link_to 'Editar', editar_path(todos) %> </p>
+		<p> <%= link_to "Borrar", todos, method: :delete %> </p>
+		<p> <%= link_to "Completar", complete_path(todos)%> </p>
+	</div>
+<% end %>

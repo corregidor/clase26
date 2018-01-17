@@ -1,0 +1,7 @@
+<h1>Detalle</h1>
+<br>
+<div class="well">
+	<h3> <%= @todo.description %></h3>
+	<p> <%= @todo.completed %></p>
+	<p> Creado hace: <%= time_ago_in_words @todo.created_at %></p>
+</div>
